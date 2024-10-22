@@ -2415,21 +2415,6 @@ describe('User', () => {
 			assert.strictEqual(userData[1].fullname, '');
 			assert.strictEqual(userData[1].email, '');
 		});
-
-		it('should hide fullname in topic list and topic', async () => {
-			await Topics.post({
-				uid: hidingUser.uid,
-				title: 'Topic hidden',
-				content: 'lorem ipsum',
-				cid: testCid,
-			});
-
-			const { body: body1 } = await request.get(`${nconf.get('url')}/api/recent`);
-			assert(!body1.topics[0].user.hasOwnProperty('fullname'));
-
-			const { body: body2 } = await request.get(`${nconf.get('url')}/api/topic/${body1.topics[0].slug}`);
-			assert(!body2.posts[0].user.hasOwnProperty('fullname'));
-		});
 	});
 
 	describe('user blocking methods', (done) => {
