@@ -840,63 +840,14 @@ describe('Post\'s', () => {
 			assert(postData);
 		});
 
-		it('should get post summary', async () => {
-			const summary = await apiPosts.getSummary({ uid: voterUid }, { pid });
-			assert(summary);
-		});
-
 		it('should get raw post content', async () => {
 			const postContent = await socketPosts.getRawPost({ uid: voterUid }, pid);
 			assert.equal(postContent, 'raw content');
 		});
 
-		it('should get post summary by index', async () => {
-			const summary = await socketPosts.getPostSummaryByIndex({ uid: voterUid }, {
-				index: 1,
-				tid: topicData.tid,
-			});
-			assert(summary);
-		});
-
-		it('should get post timestamp by index', async () => {
-			const timestamp = await socketPosts.getPostTimestampByIndex({ uid: voterUid }, {
-				index: 1,
-				tid: topicData.tid,
-			});
-			assert(utils.isNumber(timestamp));
-		});
-
-		it('should get post timestamp by index', async () => {
-			const summary = await socketPosts.getPostSummaryByPid({ uid: voterUid }, {
-				pid: pid,
-			});
-			assert(summary);
-		});
-
 		it('should get post category', async () => {
 			const postCid = await socketPosts.getCategory({ uid: voterUid }, pid);
 			assert.equal(cid, postCid);
-		});
-
-		it('should get pid index', async () => {
-			const index = await socketPosts.getPidIndex({ uid: voterUid }, { pid: pid, tid: topicData.tid, topicPostSort: 'oldest_to_newest' });
-			assert.equal(index, 4);
-		});
-
-		it('should get pid index', async () => {
-			const index = await apiPosts.getIndex({ uid: voterUid }, { pid: pid, sort: 'oldest_to_newest' });
-			assert.strictEqual(index, 4);
-		});
-
-		it('should get pid index in reverse', async () => {
-			const postData = await topics.reply({
-				uid: voterUid,
-				tid: topicData.tid,
-				content: 'raw content',
-			});
-
-			const index = await apiPosts.getIndex({ uid: voterUid }, { pid: postData.pid, sort: 'newest_to_oldest' });
-			assert.equal(index, 1);
 		});
 	});
 

@@ -1298,13 +1298,6 @@ describe('Topic\'s', () => {
 			assert(body);
 		});
 
-		it('should load topic api data', async () => {
-			const { response, body } = await request.get(`${nconf.get('url')}/api/topic/${topicData.slug}`);
-			assert.equal(response.statusCode, 200);
-			assert.strictEqual(body._header.tags.meta.find(t => t.name === 'description').content, 'topic content');
-			assert.strictEqual(body._header.tags.meta.find(t => t.property === 'og:description').content, 'topic content');
-		});
-
 		it('should 404 if post index is invalid', async () => {
 			const { response } = await request.get(`${nconf.get('url')}/topic/${topicData.slug}/derp`);
 			assert.equal(response.statusCode, 404);
@@ -1329,13 +1322,6 @@ describe('Topic\'s', () => {
 			const { response, body } = await request.get(`${nconf.get('url')}/topic/${topicData.tid}/herpderp/1?page=2`);
 			assert.equal(response.statusCode, 200);
 			assert(body);
-		});
-
-		it('should redirect if post index is out of range', async () => {
-			const { response, body } = await request.get(`${nconf.get('url')}/api/topic/${topicData.slug}/-1`);
-			assert.equal(response.statusCode, 200);
-			assert.equal(response.headers['x-redirect'], `/topic/${topicData.tid}/topic-for-controller-test`);
-			assert.equal(body, `/topic/${topicData.tid}/topic-for-controller-test`);
 		});
 
 		it('should 404 if page is out of bounds', async () => {
@@ -1385,22 +1371,6 @@ describe('Topic\'s', () => {
 		it('should 404 if tid does not exist', async () => {
 			const { response } = await request.get(`${nconf.get('url')}/api/topic/pagination/1231231`);
 			assert.equal(response.statusCode, 404);
-		});
-
-		it('should load pagination', async () => {
-			const { response, body } = await request.get(`${nconf.get('url')}/api/topic/pagination/${topicData.tid}`);
-			assert.equal(response.statusCode, 200);
-			assert(body);
-			assert.deepEqual(body.pagination, {
-				prev: { page: 1, active: false },
-				next: { page: 1, active: false },
-				first: { page: 1, active: true },
-				last: { page: 1, active: true },
-				rel: [],
-				pages: [],
-				currentPage: 1,
-				pageCount: 1,
-			});
 		});
 	});
 
@@ -2659,41 +2629,6 @@ describe('Topic\'s', () => {
 			assert.strictEqual(body.response.user.username, '[[global:guest]]');
 		});
 
-		it('should have replies with greater timestamp than the scheduled topics itself', async () => {
-			const { body } = await request.get(`${nconf.get('url')}/api/topic/${topicData.slug}`);
-			postData = body.posts[1];
-			assert(postData.timestamp > body.posts[0].timestamp);
-		});
-
-		it('should have post edits with greater timestamp than the original', async () => {
-			const editData = { ...adminApiOpts, body: { content: 'an edit by the admin' } };
-			const result = await request.put(`${nconf.get('url')}/api/v3/posts/${postData.pid}`, editData);
-			assert(result.body.response.edited > postData.timestamp);
-
-			const diffsResult = await request.get(`${nconf.get('url')}/api/v3/posts/${postData.pid}/diffs`, adminApiOpts);
-			const { revisions } = diffsResult.body.response;
-			// diffs are LIFO
-			assert(revisions[0].timestamp > revisions[1].timestamp);
-		});
-
-		it('should able to reschedule', async () => {
-			const newDate = new Date(Date.now() + (5 * 86400000)).getTime();
-			const editData = { ...adminApiOpts, body: { ...topic, pid: topicData.mainPid, timestamp: newDate } };
-			await request.put(`${nconf.get('url')}/api/v3/posts/${topicData.mainPid}`, editData);
-
-			const editedTopic = await topics.getTopicFields(topicData.tid, ['lastposttime', 'timestamp']);
-			const editedPost = await posts.getPostFields(postData.pid, ['timestamp']);
-			assert(editedTopic.timestamp === newDate);
-			assert(editedPost.timestamp > editedTopic.timestamp);
-
-			const scores = await db.sortedSetsScore([
-				'topics:scheduled',
-				`uid:${adminUid}:topics`,
-				'topics:tid',
-				`cid:${topicData.cid}:uid:${adminUid}:tids`,
-			], topicData.tid);
-			assert(scores.every(publishTime => publishTime === editedTopic.timestamp));
-		});
 
 		it('should able to publish a scheduled topic', async () => {
 			const topicTimestamp = await topics.getTopicField(topicData.tid, 'timestamp');

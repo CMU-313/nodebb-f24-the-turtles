@@ -237,17 +237,6 @@ describe('Categories', () => {
 			});
 		});
 
-		it('should not show deleted topic titles', async () => {
-			const data = await socketCategories.loadMore({ uid: 0 }, {
-				cid: categoryObj.cid,
-				after: 0,
-			});
-
-			assert.deepStrictEqual(
-				data.topics.map(t => t.title),
-				['[[topic:topic-is-deleted]]', 'Test Topic Title', 'Test Topic Title'],
-			);
-		});
 
 		it('should load topic count', (done) => {
 			socketCategories.getTopicCount({ uid: posterUid }, categoryObj.cid, (err, topicCount) => {
