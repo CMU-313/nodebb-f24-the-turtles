@@ -1372,7 +1372,6 @@ describe('Topic\'s', () => {
 			const { response } = await request.get(`${nconf.get('url')}/api/topic/pagination/1231231`);
 			assert.equal(response.statusCode, 404);
 		});
-
 	});
 
 

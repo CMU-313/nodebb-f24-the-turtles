@@ -849,8 +849,6 @@ describe('Post\'s', () => {
 			const postCid = await socketPosts.getCategory({ uid: voterUid }, pid);
 			assert.equal(cid, postCid);
 		});
-
-
 	});
 
 	describe('filterPidsByCid', () => {
