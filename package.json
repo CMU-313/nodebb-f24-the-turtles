@@ -158,7 +158,6 @@
         "@commitlint/cli": "19.3.0",
         "@commitlint/config-angular": "19.3.0",
         "@stryker-mutator/core": "^8.6.0",
-        "@stryker-mutator/javascript-mutator": "^4.0.0",
         "@stryker-mutator/mocha-runner": "^8.6.0",
         "coveralls": "3.1.1",
         "eslint": "8.57.0",
