@@ -61,7 +61,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'nodebb-team-turtles-awfwbqc8bgbge6ek'
+          app-name: 'nodebb-team-turtles'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7AE551742B954B0DAD0B614473255649 }}
           package: .
