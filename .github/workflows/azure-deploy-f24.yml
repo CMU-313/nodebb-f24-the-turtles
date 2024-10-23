@@ -43,7 +43,7 @@ jobs:
           sed -i 's#"nodebb-theme-harmony": ".*"#"nodebb-theme-harmony": "file:./frontend-theme"#' package.json
 
       - name: Install dependencies
-        run: npm ci  
+        run: npm install
         
       - name: Set up NodeBB
         run: |
