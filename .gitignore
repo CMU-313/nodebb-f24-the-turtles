@@ -1,8 +1,7 @@
 dist/
 yarn.lock
 npm-debug.log
-!node_modules/nodebb-plugin-composer-default/*
-node_modules/
+
 !node_modules/nodebb-plugin-composer-default/
 !node_modules/nodebb-theme-harmony/
 setup.sh
@@ -74,4 +73,9 @@ link-plugins.sh
 test.sh
 
 .docker/**
+
+
 !**/.gitkeep
+node_modules
+node_modules
+node_modules
