@@ -32,6 +32,16 @@ jobs:
         with:
           node-version: '20.17.0'
           
+      - name: Checkout frontend theme repository
+        uses: actions/checkout@v4
+        with:
+          repository: cmu-313/nodebb-frontend-f24-the-turtles  
+          path: ../nodebb-frontend-f24-the-turtles
+
+      - name: Modify package.json to reference the local theme
+        run: |
+          sed -i 's#"nodebb-theme-harmony": ".*"#"nodebb-theme-harmony": "file:../nodebb-frontend-f24-the-turtles"#' package.json
+
       - name: Install dependencies
         run: npm ci  
         
