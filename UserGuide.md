@@ -44,17 +44,22 @@ The tests provide comprehensive coverage of the anonymous posting feature, focus
 - **Coder**: Amanda Lu
 
 ### 2. Steps to Use the Feature
-1. **Step 0**: Since this change requires connection with the front-end repo, user need to download our front end repo to the same file path, and then change the `install/package.json` file. Look up `nodebb-theme-harmony` and change this line to: `"nodebb-theme-harmony": "file:../nodebb-frontend-f24-the-turtles",` then do `npm install`, and `./nodebb build tpl`.
+1. **Step 0**: Use the admin credentials to log in:
+      - Username: admin
+      - Password: asdfasdf!
 2. **Step 1**: Navigate to the forum topic you want to mark as resolved.
-3. **Step 2**: Click on the dropdown menu to reveal additional options.
-<img width="235" alt="Screen Shot 2024-10-03 at 17 09 02" src="https://github.com/user-attachments/assets/ab2fb858-0b88-4bd2-859b-f3ae271c0d27">
+3. **Step 2**: Click on the dropdown menu to reveal additional options.<img width="1596" alt="Screen Shot 2024-10-23 at 15 02 56" src="https://github.com/user-attachments/assets/f4f4dee3-4a76-4ace-9014-c11328f8eda3">
 
-4. **Step 3**: Click on the "Mark As Resolved" button from the dropdown menu. **After click, please manually click the REFRESH button to see the changes.**
+
+4. **Step 3**: Click on the "Mark As Resolved" button from the dropdown menu. 
 5. **Step 4**: Then a card displaying resolve confirmation will appear, user should click on "Yes, Mark As Resolved" button.
 <img width="315" alt="Screen Shot 2024-10-03 at 17 14 52" src="https://github.com/user-attachments/assets/be5c8438-8a87-4e63-9677-035bd67f9704">
 
-6. **Expected Result**: The topic will be marked as resolved, and a "Resolved" badge will appear next to the topic title, indicating its status. Additionally, the status will be updated in the backend, and the change will be reflected in the forum interface.
-<img width="758" alt="Screen Shot 2024-10-03 at 17 13 24" src="https://github.com/user-attachments/assets/0948218e-d4e4-478a-9b9f-29462c718907">
+6. **Step 5**: After click, please MANUALLY click the 'Refresh' button on the top-left corner of your Chrome browser to see the changes. <img width="144" alt="Screen Shot 2024-10-24 at 22 02 53" src="https://github.com/user-attachments/assets/9a03d613-1c67-40ce-8e2c-60235371b802">
+
+7. **Expected Result**: The topic will be marked as resolved, and a "Resolved" badge will appear next to the topic title, indicating its status. Additionally, the status will be updated in the backend, and the change will be reflected in the forum interface.<img width="1589" alt="Screen Shot 2024-10-23 at 15 04 04" src="https://github.com/user-attachments/assets/6d35ad77-4933-4efa-82c9-efd73e7679b8">
+
+
 
 ### Automated Tests
 
