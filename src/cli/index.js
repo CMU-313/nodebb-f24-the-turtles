@@ -110,10 +110,9 @@ prestart.loadConfig(configFile);
 prestart.versionCheck();
 
 function checkSetupAndInstall() {
-    if (!configExists && process.argv[2] !== 'setup') {
-        require('./setup').webInstall();
-        return; // This is now inside the function, so it's valid
-    }
+	if (!configExists && process.argv[2] !== 'setup') {
+		require('./setup').webInstall();
+	}
 }
 
 checkSetupAndInstall(); // Call the function where needed

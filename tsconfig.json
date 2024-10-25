@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                         // Specifies ECMAScript target version
+      "module": "commonjs",                    // Specifies the module code generation
+      "experimentalDecorators": true,          // Enables experimental support for decorators
+      "emitDecoratorMetadata": true,           // Allows metadata to be emitted for decorated declarations
+      "strict": true,                          // Enable strict type-checking options
+      "outDir": "./dist",                      // Redirects output structure to the 'dist' folder
+      "rootDir": "./src",                      // Specifies the root folder of the TypeScript files
+      "declaration": true                      // Generates .d.ts files in the dist folder
+    },
+    "include": [
+      "src/**/*"                               // Specifies the folder containing TypeScript files
+    ],
+    "exclude": [
+      "node_modules"                           // Excludes node_modules from being compiled
+    ]
+}
+  

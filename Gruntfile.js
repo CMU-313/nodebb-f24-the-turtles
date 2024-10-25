@@ -93,7 +93,7 @@ module.exports = function (grunt) {
 					'install/*.js',
 					'src/**/*.js',
 					'public/src/modules/translator.common.js',
-					'public/src/modules/helpers.common.js',
+					// 'public/src/modules/helpers.common.js',
 					'public/src/utils.common.js',
 					serverUpdated,
 					'!src/upgrades/**',

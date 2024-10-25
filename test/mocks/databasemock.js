@@ -5,7 +5,7 @@
  * ATTENTION: testing db is flushed before every use!
  */
 
-require('../../require-main');
+// require('../../require-main');
 
 const path = require('path');
 const nconf = require('nconf');
