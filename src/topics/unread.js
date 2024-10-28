@@ -202,7 +202,7 @@ module.exports = function (Topics) {
 	}
 
 	async function getWatchedTrackedCids(uid) {
-		if (!(parseInt(uid, 10) > 0)) {
+		if (parseInt(uid, 10) <= 0) {
 			return [];
 		}
 		const cids = await user.getCategoriesByStates(uid, [
@@ -258,7 +258,9 @@ module.exports = function (Topics) {
 				return hasUnblockedUnread;
 			}
 			let postData = await posts.getPostsFields(pidsSinceLastVisit, ['pid', 'uid']);
+			/* jshint -W083 */
 			postData = postData.filter(post => !params.blockedUids.includes(parseInt(post.uid, 10)));
+			/* jshint +W083 */
 
 			done = postData.length > 0;
 			hasUnblockedUnread = postData.length > 0;
@@ -349,7 +351,7 @@ module.exports = function (Topics) {
 	};
 
 	Topics.hasReadTopics = async function (tids, uid) {
-		if (!(parseInt(uid, 10) > 0)) {
+		if ((parseInt(uid, 10) <= 0)) {
 			return tids.map(() => false);
 		}
 		const [topicScores, userScores, tids_unread, blockedUids] = await Promise.all([

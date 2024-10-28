@@ -12,6 +12,7 @@
     "scripts": {
         "start": "node loader.js",
         "lint": "eslint --cache ./nodebb .",
+        "jshint": "npx jshint src",
         "test": "nyc --reporter=html --reporter=text-summary mocha",
         "coverage": "nyc report --reporter=text-lcov > ./coverage/lcov.info",
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage"

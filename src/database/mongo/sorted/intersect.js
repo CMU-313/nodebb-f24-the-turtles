@@ -140,14 +140,18 @@ module.exports = function (module) {
 				items.push(nextItem);
 			}
 
-			const members = await Promise.all(otherSets.map(async (s) => {
-				const data = await module.client.collection('objects').find({
-					_key: s, value: { $in: items.map(i => i.value) },
-				}, {
-					projection: { _id: 0, value: 1 },
-				}).batchSize(items.length + 1).toArray();
-				return new Set(data.map(i => i.value));
-			}));
+			/* jshint -W083 */
+			const members = await Promise.all(
+				otherSets.map(async (s) => {
+					const data = await module.client.collection('objects').find({
+						_key: s, value: { $in: items.map(i => i.value) },
+					}, {
+						projection: { _id: 0, value: 1 },
+					}).batchSize(items.length + 1).toArray();
+					return new Set(data.map(i => i.value));
+				})
+			);
+			/* jshint +W083 */
 			inters = inters.concat(items.filter(item => members.every(arr => arr.has(item.value))));
 			if (inters.length >= params.stop) {
 				done = true;

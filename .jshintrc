@@ -2,6 +2,14 @@
     "undef": true,
     "unused": true,
     "globals": {
-        "MY_GLOBAL": true
-    }
+        "describe": true,
+        "it": true,
+        "beforeEach": true,
+        "scale": true,
+        "jQuery": true,
+        "fetch": true,
+        "AbortSignal": true
+    },
+    "esversion": 9,
+    "node": true
 }
