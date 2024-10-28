@@ -7,8 +7,8 @@ const routeHelpers = require('../helpers');
 
 const { setupApiRoute } = routeHelpers;
 
-// eslint-disable-next-line no-unused-vars
 /* jshint -W098 */
+// eslint-disable-next-line no-unused-vars
 function guestRoutes() {
 	// like registration, login...
 }
