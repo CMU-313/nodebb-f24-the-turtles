@@ -642,7 +642,7 @@ describe('API', async () => {
 				return;
 			}
 			// Skip validation for "isEnglish" and "translatedContent"
-			if (["isEnglish", "translatedContent"].includes(prop)) {
+			if (['isEnglish', 'translatedContent'].includes(prop)) {
 				return;
 			}
 			assert(schema[prop], `"${prop}" was found in response, but is not defined in schema (path: ${method} ${path}, context: ${context})`);
