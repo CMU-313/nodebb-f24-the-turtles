@@ -4,6 +4,7 @@ var request = require('request');
 
 const translatorApi = module.exports;
 
+// test deployment
 translatorApi.translate = async function (postData) {
     // Edit the translator URL below
     const TRANSLATOR_API = 'https://turtles-translator-service-c2a5g7f4c2gsbbf9.eastus-01.azurewebsites.net/';
