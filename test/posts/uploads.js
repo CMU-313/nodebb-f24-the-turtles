@@ -345,15 +345,6 @@ describe('post uploads management', () => {
 		reply = replyData;
 	});
 
-	// it('should automatically sync uploads on topic create and reply', (done) => {
-	// 	db.sortedSetsCard([`post:${topic.topicData.mainPid}:uploads`, `post:${reply.pid}:uploads`], (err, lengths) => {
-	// 		assert.ifError(err);
-	// 		assert.strictEqual(lengths[0], 1);
-	// 		assert.strictEqual(lengths[1], 1);
-	// 		done();
-	// 	});
-	// });
-
 	it('should automatically sync uploads on post edit', async () => {
 		await posts.edit({
 			pid: reply.pid,
