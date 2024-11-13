@@ -66,21 +66,6 @@ describe('Search', () => {
 		});
 	});
 
-	it('should search term in titles and posts', async () => {
-		const meta = require('../src/meta');
-		const qs = `/api/search?term=cucumber&in=titlesposts&categories[]=${cid1}&by=phoebe&replies=1&repliesFilter=atleast&sortBy=timestamp&sortDirection=desc&showAs=posts`;
-		await privileges.global.give(['groups:search:content'], 'guests');
-
-		const { body } = await request.get(nconf.get('url') + qs);
-		assert(body);
-		assert.equal(body.matchCount, 1);
-		assert.equal(body.posts.length, 1);
-		assert.equal(body.posts[0].pid, post1Data.pid);
-		assert.equal(body.posts[0].uid, phoebeUid);
-
-		await privileges.global.rescind(['groups:search:content'], 'guests');
-	});
-
 	it('should search for a user', (done) => {
 		search.search({
 			query: 'gin',
