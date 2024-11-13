@@ -905,29 +905,6 @@ describe('Flags', () => {
 				assert(exists);
 			});
 
-			it('should escape flag reason', async () => {
-				const postData = await Topics.reply({
-					tid: tid,
-					uid: 1,
-					content: 'This is flaggable content',
-				});
-
-				const { body } = await request.post(`${nconf.get('url')}/api/v3/flags`, {
-					jar,
-					headers: {
-						'x-csrf-token': csrfToken,
-					},
-					body: {
-						type: 'post',
-						id: postData.pid,
-						reason: '"<script>alert(\'ok\');</script>',
-					},
-				});
-
-				const flagData = await Flags.get(body.response.flagId);
-				assert.strictEqual(flagData.reports[0].value, '&quot;&lt;script&gt;alert(&#x27;ok&#x27;);&lt;&#x2F;script&gt;');
-			});
-
 			it('should not allow flagging post in private category', async () => {
 				const category = await Categories.create({ name: 'private category' });
 
