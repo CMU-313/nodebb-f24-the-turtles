@@ -1,0 +1,27 @@
+[32m02:17:36 (14139) INFO ProjectReader[39m Found 548 of 1545 file(s) to be mutated.
+[32m02:17:45 (14139) INFO Instrumenter[39m Instrumented 548 source file(s) with 55894 mutant(s)
+[32m02:17:49 (14139) INFO ConcurrencyTokenProvider[39m Creating 7 test runner process(es).
+[32m02:17:51 (14139) INFO BroadcastReporter[39m Detected that current console does not support the "progress" reporter, downgrading to "progress-append-only" reporter
+[32m02:17:52 (14139) INFO DryRunExecutor[39m Starting initial test run (mocha test runner with "off" coverage analysis). This may take a while.
+[91m02:17:53 (14139) ERROR DryRunExecutor[39m One or more tests resulted in an error:
+	TypeError: Cannot set properties of undefined (setting 'require')
+TypeError: Cannot set properties of undefined (setting 'require')
+    at Object.<anonymous> (/Users/amandalu/Desktop/Projects/nodebb-f24-the-turtles/.stryker-tmp/sandbox3351672/require-main.js:8:23)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/Users/amandalu/Desktop/Projects/nodebb-f24-the-turtles/.stryker-tmp/sandbox3351672/test/mocks/databasemock.js:9:1)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+[91m02:17:53 (14139) ERROR Stryker[39m Unexpected error occurred while running Stryker Error: Something went wrong in the initial test run
+    at DryRunExecutor.validateResultCompleted (file:///Users/amandalu/Desktop/Projects/nodebb-f24-the-turtles/node_modules/@stryker-mutator/core/dist/src/process/3-dry-run-executor.js:76:15)
+    at DryRunExecutor.executeDryRun (file:///Users/amandalu/Desktop/Projects/nodebb-f24-the-turtles/node_modules/@stryker-mutator/core/dist/src/process/3-dry-run-executor.js:96:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async WorkItem.execute (file:///Users/amandalu/Desktop/Projects/nodebb-f24-the-turtles/node_modules/@stryker-mutator/core/dist/src/concurrent/pool.js:32:28)
+    at async file:///Users/amandalu/Desktop/Projects/nodebb-f24-the-turtles/node_modules/@stryker-mutator/core/dist/src/concurrent/pool.js:69:13
+[32m02:17:53 (14139) INFO Stryker[39m This might be a known problem with a solution documented in our troubleshooting guide.
+[32m02:17:53 (14139) INFO Stryker[39m You can find it at https://stryker-mutator.io/docs/stryker-js/troubleshooting/
+[32m02:17:53 (14139) INFO Stryker[39m Still having trouble figuring out what went wrong? Try `npx stryker run --fileLogLevel trace --logLevel debug` to get some more info.
