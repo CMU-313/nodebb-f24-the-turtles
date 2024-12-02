@@ -1,0 +1,53 @@
+compile("");
+call $$ANON_1 ( [{…}] )
+call $$ANON_1 end -> [undefined]
+call compile ( [""] )
+  call scan ( [""] )
+    loop 333
+      call next ( [] )
+      call next end -> [undefined]
+      call charAt #external ( [0] )
+      call charAt end #external -> [""]
+      call charCodeAt #external ( [0] )
+      call charCodeAt end #external -> [NaN]
+      call isBlank ( [NaN] )
+      call isBlank end -> [false]
+      call isAlpha ( [NaN] )
+      call isAlpha end -> [false]
+      call isNumber ( [NaN] )
+      call isNumber end -> [false]
+      call charCodeAt #external ( [1] )
+      call charCodeAt end #external -> [NaN]
+      call isNumber ( [NaN] )
+      call isNumber end -> [false]
+      call isQuote ( [NaN] )
+      call isQuote end -> [false]
+      call isPunctuatorChar ( [""] )
+      call isPunctuatorChar end -> [false]
+      call isOperatorChar ( [""] )
+      call isOperatorChar end -> [false]
+      if
+       break
+      if end
+    loop end 333
+  call scan end -> [Array(0)]
+  call parse ( [Array(0)] )
+    call next ( [] )
+    call next end -> [undefined]
+    call pushScope ( [{…}] )
+      new Scope
+      new end
+    call pushScope end -> [undefined]
+    call parseStatementList ( [] )
+    loop 340
+      if
+        break 
+      if end
+    loop end 340
+    call parseStatementList end -> [Array(0)]
+  call parse end -> [{…}]
+  call generate ( [{…}] )
+    call generateBody ( [Array(0)] )
+    call generateBody end -> [undefined]
+  call generate end -> [""]
+call compile end -> [""]
